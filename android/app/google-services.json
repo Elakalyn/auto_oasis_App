@@ -1,0 +1,118 @@
+{
+  "project_info": {
+    "project_number": "421924305521",
+    "project_id": "car-app-410f4",
+    "storage_bucket": "car-app-410f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421924305521:android:e0f1e2a17ffff1e1a079d0",
+        "android_client_info": {
+          "package_name": "com.example.auto_oasis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421924305521-2lf07n21jrqpi9pgivad5e3bjol817gk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPjr72rUH8Bw-GyCs5rME1xbRwLokbws4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "421924305521-2lf07n21jrqpi9pgivad5e3bjol817gk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "421924305521-7a1hk52h23ja4v56c6eiptmq0641fpbs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.carRent"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421924305521:android:d7cb29879b2ab3aba079d0",
+        "android_client_info": {
+          "package_name": "com.example.car_rent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421924305521-2lf07n21jrqpi9pgivad5e3bjol817gk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPjr72rUH8Bw-GyCs5rME1xbRwLokbws4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "421924305521-2lf07n21jrqpi9pgivad5e3bjol817gk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "421924305521-7a1hk52h23ja4v56c6eiptmq0641fpbs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.carRent"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421924305521:android:76ee94a7721f5212a079d0",
+        "android_client_info": {
+          "package_name": "com.example.rent_car"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421924305521-2lf07n21jrqpi9pgivad5e3bjol817gk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPjr72rUH8Bw-GyCs5rME1xbRwLokbws4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "421924305521-2lf07n21jrqpi9pgivad5e3bjol817gk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "421924305521-7a1hk52h23ja4v56c6eiptmq0641fpbs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.carRent"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
