@@ -2,19 +2,18 @@
 
 Built using the Flutter framework and the Firebase API. Designed & prototyped on the Figma platform.
 
-Auto Oasis is a car rental application that provides an easy and efficient way to find, book, and rent cars. It offers a wide selection of cars to fit every need and budget. Auto Oasis also offers a variety of additional services to make the car rental experience as hassle-free as possible.
-
-Figma file: https://www.figma.com/file/MmixWtDmI2dSwB184j9UWP/Untitled?type=design&mode=design&t=aA0XNbQTBIN0qNMT-1
-           
+Auto Oasis is a car rental application that provides an easy and efficient way to find, book, and rent cars. It offers a wide selection of cars to fit every need and budget. Auto Oasis also offers a variety of additional services to make the car rental experience as hassle-free as possible. The User Interface of the app is designed in a way that puts the user front-and-center and incorporates crucial aspects of user experience design.
            
          
 ## 📱 Screenshots (Android):
 
 <div style="display: flex; justify-content: center;">
-  <img src="https://media.discordapp.net/attachments/673875945198714920/1124669755358449664/Screenshot_2023-07-01-14-55-03-30_ffdc355e681220d83e1c4796f5f6ad84.jpg?width=275&height=610" alt="Image 1">
-  <img src="https://media.discordapp.net/attachments/673875945198714920/1124669756042133574/Screenshot_2023-07-01-14-55-16-26_ffdc355e681220d83e1c4796f5f6ad84.jpg?width=275&height=610" alt="Image 2">
-  <img src="https://media.discordapp.net/attachments/673875945198714920/1124669756386054174/Screenshot_2023-07-01-14-55-34-80_ffdc355e681220d83e1c4796f5f6ad84.jpg?width=275&height=610" alt="Image 3">
-  <img src="https://media.discordapp.net/attachments/673875945198714920/1124669756709027931/Screenshot_2023-07-01-14-55-39-64_ffdc355e681220d83e1c4796f5f6ad84.jpg?width=275&height=610" alt="Image 4">
+  <img src="https://media.discordapp.net/attachments/673875945198714920/1132021543497629796/image.png?width=281&height=609" alt="Image 1">
+  <img src="https://media.discordapp.net/attachments/673875945198714920/1132021622979690636/image.png?width=279&height=610" alt="Image 2">
+  <img src="https://media.discordapp.net/attachments/673875945198714920/1132021658388013128/image.png?width=273&height=609" alt="Image 3">
+  <img src="https://media.discordapp.net/attachments/673875945198714920/1132021840118829196/image.png?width=281&height=609" alt="Image 4">
+  <img src="https://media.discordapp.net/attachments/673875945198714920/1132021974487552112/image.png?width=254&height=610" alt="Image 5">
+  <img src="https://media.discordapp.net/attachments/673875945198714920/1132022141739602030/image.png?width=281&height=609" alt="Image 6">
 </div>
 
 ## Dependencies
