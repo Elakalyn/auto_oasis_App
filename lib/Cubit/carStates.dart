@@ -28,3 +28,9 @@ class SuccessRegisterState extends CarState {}
 class ChangedSettingsState extends CarState {}
 
 class ScrollExpansionState extends CarState {}
+
+// OTHERS
+
+class Filtering extends CarState {}
+
+class LoadDescription extends CarState {}

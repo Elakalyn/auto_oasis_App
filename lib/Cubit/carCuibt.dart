@@ -38,7 +38,7 @@ class CarCubit extends Cubit<CarState> {
 
   List<Widget> Screens = [
     HomePage(),
-    VehiclesPage(),
+    CarsPage(),
     SettingsPage(),
   ];
 
@@ -158,6 +158,14 @@ class CarCubit extends Cubit<CarState> {
         await FirebaseFirestore.instance.collection('users').doc(uid).get();
 
     interuser = documentSnapshot;
+  }
+
+  void selectFeature() {
+    emit(Filtering());
+  }
+
+  void loadDescription() {
+    emit(LoadDescription());
   }
 
   // SETTINGS PAGE
