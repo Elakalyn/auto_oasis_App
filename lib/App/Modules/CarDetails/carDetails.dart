@@ -4,7 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CarDetails extends StatelessWidget {
-  const CarDetails({super.key});
+  const CarDetails({super.key,required this.car_image, required this.car_brand, required this.car_name,required this.brand_name});
+
+  final car_name;
+  final car_image;
+  final car_brand;
+  final brand_name;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +18,7 @@ class CarDetails extends StatelessWidget {
         children: [
           TextSpan(
             text:
-                'Citroën C4 is an energetic and assertive attitude: A tall, sculpted hood, A front end which incorporates the ',
+                '  C4 is an energetic and assertive attitude: A tall, sculpted hood, A front end which incorporates the ',
             style: TextStyle(
               color: Colors.black,
               fontSize: 13.75,
@@ -45,7 +50,7 @@ class CarDetails extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                      child: Image.asset('assets/images/2019camry.png'),
+                      child: Image.network(car_image),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -53,9 +58,9 @@ class CarDetails extends StatelessWidget {
                         children: [
                           Chip(
                             avatar:
-                                Image.asset('assets/images/toyota_logo.png'),
-                            label: const Text(
-                              'Toyota',
+                                Image.network(car_brand),
+                            label: Text(
+                              brand_name,
                               style: TextStyle(color: Colors.black),
                             ),
                           ),
@@ -106,8 +111,8 @@ class CarDetails extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Row(
                         children: [
-                          const Text(
-                            'Citroen Cactus',
+                           Text(
+                          car_name,
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 20,

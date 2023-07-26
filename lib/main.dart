@@ -7,13 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'App/Modules/Login/login.dart';
 import 'App/Modules/Onboarding/onboarding.dart';
-import 'App/Modules/Product_Details/product_details.dart';
+
 import 'App/Modules/Profile/profile.dart';
 import 'Cubit/carCuibt.dart';
 import 'Cubit/carStates.dart';
 import 'Network/Local/cacheHelper.dart';
 import 'Shared/Constants/constants.dart';
 import 'Shared/Styles/styles.dart';
+import 'Widget Construction/widget_construction.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -44,6 +45,7 @@ Future<void> main() async {
       .then((value) {
     print(value.id);
   });  */ // FOR ADDING MORE VEHICLES TO THE DATA BASE
+
   runApp(const MyApp());
 }
 
@@ -73,7 +75,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               useMaterial3: true,
             ),
-            home: home,
+            home: MainWidget(),
             debugShowCheckedModeBanner: false,
           );
         },
@@ -94,6 +96,9 @@ class SplashScreen extends StatelessWidget {
   }
 }
 
+
+
+
 void batchUpdateDocuments() async {
   final batch = FirebaseFirestore.instance.batch();
 
@@ -101,11 +106,12 @@ void batchUpdateDocuments() async {
   QuerySnapshot querySnapshot =
       await FirebaseFirestore.instance.collection('vehicles').get();
 
-  // Loop through documents
+  // Loop through document
+  // s
   for (DocumentSnapshot doc in querySnapshot.docs) {
     batch.update(
       doc.reference,
-      {'year': '2019'},
+      {'description': ''},
     );
   }
 
