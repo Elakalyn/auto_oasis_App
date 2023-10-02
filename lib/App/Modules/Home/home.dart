@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-import '../Vehicles/vehicles.dart';
+import '../../../Shared/Components/components.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

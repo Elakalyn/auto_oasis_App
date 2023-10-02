@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, prefer_typing_uninitialized_variables, unused_local_variable
 
 import 'package:auto_oasis/App/Modules/Main/mainModule.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -59,9 +59,9 @@ class MyApp extends StatelessWidget {
     if (displayOnBoarding == null) {
       home = const onboarding();
     } else if (uid != null) {
-      home = MainWidget();
+      home = const MainWidget();
     } else {
-      home = Login();
+      home = const Login();
     }
     return BlocProvider(
       create: (context) => CarCubit()..loadUserData(),
@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               useMaterial3: true,
             ),
-            home: MainWidget(),
+            home: const MainWidget(),
             debugShowCheckedModeBanner: false,
           );
         },
@@ -83,21 +83,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-class SplashScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[900],
-      body: Center(
-        child: Image.asset('assets/images/onboarding_car.png'),
-      ),
-    );
-  }
-}
-
-
-
 
 void batchUpdateDocuments() async {
   final batch = FirebaseFirestore.instance.batch();

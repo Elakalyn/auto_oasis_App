@@ -160,7 +160,9 @@ class CarCubit extends Cubit<CarState> {
     interuser = documentSnapshot;
   }
 
-  void selectFeature() {
+  var filter;
+  void selectFilter(v) {
+    filter = v;
     emit(Filtering());
   }
 
@@ -168,5 +170,32 @@ class CarCubit extends Cubit<CarState> {
     emit(LoadDescription());
   }
 
-  // SETTINGS PAGE
+  Future<List<DocumentSnapshot>> searchDocuments(String searchQuery) async {
+    emit(SearchLoadingState());
+    final QuerySnapshot snapshot = await FirebaseFirestore.instance
+        .collection('vehicles') // Replace with your collection name
+        .where('vehicle_name', isGreaterThanOrEqualTo: searchQuery)
+        .get()
+        .whenComplete(() {
+      emit(SearchSuccessState());
+    }).catchError((e) {
+      emit(SearchErrorState());
+      print(e.toString());
+    });
+
+    return snapshot.docs;
+  }
+
+  String searchQuery = '';
+  List<DocumentSnapshot> searchResults = [];
+
+  void performSearch() async {
+    emit(StartSearchState());
+    if (searchQuery.isNotEmpty) {
+      final List<DocumentSnapshot> results =
+          await searchDocuments(searchQuery.toUpperCase());
+
+      searchResults = results;
+    }
+  }
 }

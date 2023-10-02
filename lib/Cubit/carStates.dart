@@ -34,3 +34,13 @@ class ScrollExpansionState extends CarState {}
 class Filtering extends CarState {}
 
 class LoadDescription extends CarState {}
+
+// Search
+
+class StartSearchState extends CarState {}
+
+class SearchLoadingState extends CarState {}
+
+class SearchSuccessState extends CarState {}
+
+class SearchErrorState extends CarState {}
