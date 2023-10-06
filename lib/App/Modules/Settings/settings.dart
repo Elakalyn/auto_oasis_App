@@ -6,6 +6,7 @@ import 'package:auto_oasis/Shared/Components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hexcolor/hexcolor.dart';
 import '../../../Cubit/carCuibt.dart';
 import '../../../Network/Local/cacheHelper.dart';
 import '../../../Shared/Constants/constants.dart';
@@ -19,20 +20,15 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var themes = ['Light', 'Dark'];
-    var languages = ['English', 'Spanish', 'French'];
-    var selectedLanguage = 'English';
-
     return Scaffold(
-      backgroundColor: Colors.white,
       body: BlocConsumer<CarCubit, CarState>(
         listener: (context, state) {
           print(state);
         },
         builder: (context, state) {
-          return SafeArea(
+          return const SafeArea(
             child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
+                physics: BouncingScrollPhysics(),
                 child: Column(
                   children: [
                     searchBar(settings: true),
@@ -40,7 +36,7 @@ class SettingsPage extends StatelessWidget {
                       height: 40,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      padding: EdgeInsets.symmetric(horizontal: 24.0),
                       child: Wrap(
                         alignment: WrapAlignment.center,
                         spacing: 15,
@@ -60,7 +56,7 @@ class SettingsPage extends StatelessWidget {
                               name: 'Rent History'),
                           settingWidget(
                               image: 'assets/Icons/profile.png',
-                              name: 'Provide Feedback'),
+                              name: 'Appearance'),
                         ],
                       ),
                     ),
@@ -69,6 +65,97 @@ class SettingsPage extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+}
+
+class Account extends StatelessWidget {
+  const Account({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold();
+  }
+}
+
+class Payment extends StatelessWidget {
+  const Payment({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+    );
+  }
+}
+
+class Language extends StatelessWidget {
+  const Language({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+    );
+  }
+}
+
+class RentHistory extends StatelessWidget {
+  const RentHistory({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+    );
+  }
+}
+
+class Appearance extends StatelessWidget {
+  const Appearance({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<CarCubit, CarState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(),
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: double.maxFinite,
+                  height: 70.0,
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(14.0),
+                    child: Row(
+                      children: [
+                        const Text('Dark theme',
+                            style: TextStyle(
+                              fontSize: 24,
+                            )),
+                        const Spacer(),
+                        Switch(
+                            value: darkTheme,
+                            onChanged: (v) {
+                              CarCubit.get(context).changeTheme(v); 
+                            })
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

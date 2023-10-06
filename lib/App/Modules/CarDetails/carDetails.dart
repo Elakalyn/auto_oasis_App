@@ -2,9 +2,15 @@ import 'package:auto_oasis/Cubit/carCuibt.dart';
 import 'package:auto_oasis/Cubit/carStates.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:speed_up_flutter/speed_up_flutter.dart';
 
 class CarDetails extends StatelessWidget {
-  const CarDetails({super.key,required this.car_image, required this.car_brand, required this.car_name,required this.brand_name});
+  const CarDetails(
+      {super.key,
+      required this.car_image,
+      required this.car_brand,
+      required this.car_name,
+      required this.brand_name});
 
   final car_name;
   final car_image;
@@ -18,9 +24,8 @@ class CarDetails extends StatelessWidget {
         children: [
           TextSpan(
             text:
-                '  C4 is an energetic and assertive attitude: A tall, sculpted hood, A front end which incorporates the ',
+                'C4 is an energetic and assertive attitude: A tall, sculpted hood, A front end which incorporates the ',
             style: TextStyle(
-              color: Colors.black,
               fontSize: 13.75,
               fontWeight: FontWeight.w300,
             ),
@@ -57,18 +62,16 @@ class CarDetails extends StatelessWidget {
                       child: Row(
                         children: [
                           Chip(
-                            avatar:
-                                Image.network(car_brand),
+                            avatar: Image.network(car_brand),
                             label: Text(
                               brand_name,
-                              style: TextStyle(color: Colors.black),
+                              style: const TextStyle(color: Colors.black),
                             ),
                           ),
                           const Spacer(),
                           const Text(
                             '4.5',
                             style: TextStyle(
-                              color: Colors.black,
                               fontSize: 32,
                               fontWeight: FontWeight.w600,
                             ),
@@ -104,17 +107,14 @@ class CarDetails extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    20.h,
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Row(
                         children: [
-                           Text(
-                          car_name,
-                            style: TextStyle(
-                              color: Colors.black,
+                          Text(
+                            car_name,
+                            style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w500,
                             ),
@@ -144,9 +144,7 @@ class CarDetails extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    20.h,
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: SizedBox(
@@ -154,12 +152,11 @@ class CarDetails extends StatelessWidget {
                         child: InkWell(
                           onTap: () {
                             if (description ==
-                                Text.rich(TextSpan(children: [
+                                const Text.rich(TextSpan(children: [
                                   TextSpan(
                                     text:
                                         'Citroën C4 is an energetic and assertive attitude: A tall, sculpted hood, A front end which incorporates the new aesthetic codes of Citroën: V-shaped light signature, double-stage headlamps and chrome chevrons stretched across the entire width of the vehicle, A staging that highlights Citroën 100% LED Vision technology on the daytime running lights, headlamps and fog lights.',
                                     style: TextStyle(
-                                      color: Colors.black,
                                       fontSize: 13.75,
                                       fontWeight: FontWeight.w300,
                                     ),
@@ -174,14 +171,13 @@ class CarDetails extends StatelessWidget {
                                     ),
                                   )
                                 ]))) {
-                              description = Text.rich(
+                              description = const Text.rich(
                                 TextSpan(
                                   children: [
                                     TextSpan(
                                       text:
                                           'Citroën C4 is an energetic and assertive attitude: A tall, sculpted hood, A front end which incorporates the ',
                                       style: TextStyle(
-                                        color: Colors.black,
                                         fontSize: 13.75,
                                         fontWeight: FontWeight.w300,
                                       ),
@@ -200,12 +196,11 @@ class CarDetails extends StatelessWidget {
                               );
                               CarCubit.get(context).loadDescription();
                             } else {
-                              description = Text.rich(TextSpan(children: [
+                              description = const Text.rich(TextSpan(children: [
                                 TextSpan(
                                   text:
                                       'Citroën C4 is an energetic and assertive attitude: A tall, sculpted hood, A front end which incorporates the new aesthetic codes of Citroën: V-shaped light signature, double-stage headlamps and chrome chevrons stretched across the entire width of the vehicle, A staging that highlights Citroën 100% LED Vision technology on the daytime running lights, headlamps and fog lights.',
                                   style: TextStyle(
-                                    color: Colors.black,
                                     fontSize: 13.75,
                                     fontWeight: FontWeight.w300,
                                   ),
@@ -227,9 +222,7 @@ class CarDetails extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 40,
-                    ),
+                    40.h,
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Row(
@@ -237,7 +230,6 @@ class CarDetails extends StatelessWidget {
                           const Text(
                             'Features',
                             style: TextStyle(
-                              color: Colors.black,
                               fontSize: 20,
                               fontWeight: FontWeight.w500,
                             ),
@@ -248,57 +240,55 @@ class CarDetails extends StatelessWidget {
                             height: 37,
                             child: FilledButton(
                                 onPressed: () {},
-                                child: const Text('Compare'),
-                                style: const ButtonStyle()),
+                                style: const ButtonStyle(),
+                                child: const Text('Compare')),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                    20.h,
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 0.0),
                       child: Wrap(
                         spacing: 4,
                         children: [
                           Chip(
-                            label: const Text(
+                            label: Text(
                               'Air Conditioner',
                               style:
                                   TextStyle(fontSize: 12, color: Colors.black),
                             ),
                           ),
                           Chip(
-                            label: const Text(
+                            label: Text(
                               'FM/AM Radio',
                               style:
                                   TextStyle(fontSize: 12, color: Colors.black),
                             ),
                           ),
                           Chip(
-                            label: const Text(
+                            label: Text(
                               'Bluetooth',
                               style:
                                   TextStyle(fontSize: 12, color: Colors.black),
                             ),
                           ),
                           Chip(
-                            label: const Text(
+                            label: Text(
                               'USB Charger',
                               style:
                                   TextStyle(fontSize: 12, color: Colors.black),
                             ),
                           ),
                           Chip(
-                            label: const Text(
+                            label: Text(
                               'Airbag',
                               style:
                                   TextStyle(fontSize: 12, color: Colors.black),
                             ),
                           ),
                           Chip(
-                            label: const Text(
+                            label: Text(
                               'Touch Screen',
                               style:
                                   TextStyle(fontSize: 12, color: Colors.black),
@@ -307,17 +297,14 @@ class CarDetails extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    20.h,
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.0),
                       child: Row(
                         children: [
-                          const Text(
+                          Text(
                             'Transmission',
                             style: TextStyle(
-                              color: Colors.black,
                               fontSize: 20,
                               fontWeight: FontWeight.w500,
                             ),
@@ -325,29 +312,25 @@ class CarDetails extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Wrap(
+                    20.h,
+                    const Wrap(
                       spacing: 4,
                       children: [
                         Chip(
-                          label: const Text(
+                          label: Text(
                             'Automatic',
                             style: TextStyle(fontSize: 12, color: Colors.black),
                           ),
                         ),
                         Chip(
-                          label: const Text(
+                          label: Text(
                             'Manual',
                             style: TextStyle(fontSize: 12, color: Colors.black),
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 90,
-                    ),
+                    90.h,
                   ],
                 ),
               ),
@@ -360,8 +343,8 @@ class CarDetails extends StatelessWidget {
                     height: 50,
                     child: FilledButton(
                         onPressed: () {},
-                        child: const Text('Rent'),
-                        style: const ButtonStyle()),
+                        style: const ButtonStyle(),
+                        child: const Text('Rent')),
                   ),
                 ),
               )

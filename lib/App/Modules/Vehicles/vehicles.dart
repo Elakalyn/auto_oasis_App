@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable, prefer_typing_uninitialized_variables, non_constant_identifier_names, camel_case_types
+// ignore_for_file: must_be_immutable, prefer_typing_uninitialized_variables, non_constant_identifier_names, camel_case_types, invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../Cubit/carCuibt.dart';
 import '../../../Cubit/carStates.dart';
 import '../../../Shared/Components/components.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class CarsPage extends StatelessWidget {
   const CarsPage({super.key});
@@ -18,6 +19,43 @@ class CarsPage extends StatelessWidget {
       builder: (context, state) {
         final CollectionReference collectionRef =
             FirebaseFirestore.instance.collection('vehicles');
+        dynamic taggedCarsRef = collectionRef.where('category',
+            isEqualTo: CarCubit.get(context).filter);
+        List<CarAd> popular = [
+          CarAd(
+            car_image:
+                'https://firebasestorage.googleapis.com/v0/b/car-app-410f4.appspot.com/o/fiat_pulse.png?alt=media&token=fccb1363-e338-4349-a280-ae95be5d5219',
+            car_brand:
+                'https://firebasestorage.googleapis.com/v0/b/car-app-410f4.appspot.com/o/fiat_logo.png?alt=media&token=62e76adf-2a81-41bb-ae6c-e2c1c22361a7',
+            car_price: '200',
+            car_name: 'Fiat Pulse',
+            car_type: 'SUV',
+            car_year: '2019',
+            brand_name: 'Fiat',
+          ),
+          CarAd(
+            car_image:
+                'https://firebasestorage.googleapis.com/v0/b/car-app-410f4.appspot.com/o/2019camry.png?alt=media&token=f9c31b93-74aa-4dc7-ab58-dce885cb64b0',
+            car_brand:
+                'https://firebasestorage.googleapis.com/v0/b/car-app-410f4.appspot.com/o/toyota_logo.png?alt=media&token=d0a79c5f-9869-4fc0-b08b-7af30ce41978',
+            car_price: '50',
+            car_name: 'Toyota Camry',
+            car_type: 'Sedan',
+            car_year: '2019',
+            brand_name: 'Toyota',
+          ),
+          CarAd(
+            car_image:
+                'https://media.discordapp.net/attachments/673875945198714920/1132035875476340816/citroen_cactus.webp?width=781&height=610',
+            car_brand:
+                'https://media.discordapp.net/attachments/673875945198714920/1132035875207917708/citroen_logo.png?width=661&height=610',
+            car_price: '75',
+            car_name: 'Citroen Cactus',
+            car_type: 'SUV',
+            car_year: '2017',
+            brand_name: 'Citroen',
+          ),
+        ];
         return Scaffold(
             body: SafeArea(
                 child: SingleChildScrollView(
@@ -41,7 +79,13 @@ class CarsPage extends StatelessWidget {
                       ),
                       child: OutlinedButton.icon(
                           onPressed: () {
-                            CarCubit.get(context).selectFilter('Bugdet');
+                            if (CarCubit.get(context).filter != 'Budget') {
+                              CarCubit.get(context).selectFilter('Budget');
+                            } else {
+                              CarCubit.get(context).filter = null;
+                              CarCubit.get(context).filtering = false;
+                              CarCubit.get(context).emit(Filtering());
+                            }
                           },
                           style: OutlinedButton.styleFrom(
                             shape: RoundedRectangleBorder(
@@ -50,9 +94,11 @@ class CarsPage extends StatelessWidget {
                           ),
                           icon: const Icon(Icons.currency_pound_sharp,
                               size: 20, color: Color(0xFF007D05)),
-                          label: const Text(
+                          label: Text(
                             'Budget',
-                            style: TextStyle(fontSize: 12, color: Colors.black),
+                            style: TextStyle(
+                                fontSize: 12,
+                                color: CarCubit.get(context).chipColor),
                           )),
                     ),
                     const SizedBox(
@@ -65,7 +111,13 @@ class CarsPage extends StatelessWidget {
                       ),
                       child: OutlinedButton.icon(
                           onPressed: () {
-                            CarCubit.get(context).selectFilter('Comfort');
+                            if (CarCubit.get(context).filter != 'Comfort') {
+                              CarCubit.get(context).selectFilter('Comfort');
+                            } else {
+                              CarCubit.get(context).filter = null;
+                              CarCubit.get(context).filtering = false;
+                              CarCubit.get(context).emit(Filtering());
+                            }
                           },
                           style: OutlinedButton.styleFrom(
                             backgroundColor: const Color(0xFFBFFFC2),
@@ -97,7 +149,13 @@ class CarsPage extends StatelessWidget {
                       ),
                       child: OutlinedButton.icon(
                           onPressed: () {
-                            CarCubit.get(context).selectFilter('Luxury');
+                            if (CarCubit.get(context).filter != 'Luxury') {
+                              CarCubit.get(context).selectFilter('Luxury');
+                            } else {
+                              CarCubit.get(context).filter = null;
+                              CarCubit.get(context).filtering = false;
+                              CarCubit.get(context).emit(Filtering());
+                            }
                           },
                           style: OutlinedButton.styleFrom(
                             backgroundColor: const Color(0xFFBFC9FF),
@@ -146,175 +204,6 @@ class CarsPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            SizedBox(
-              width: 300,
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: OutlinedButton.icon(
-                  icon: const Icon(Icons.arrow_drop_down),
-                  onPressed: () {
-                    showModalBottomSheet<void>(
-                      context: context,
-                      isScrollControlled: true,
-                      builder: (BuildContext context) {
-                        return SizedBox(
-                          width: double.maxFinite,
-                          height: 500,
-                          child: Stack(
-                            children: [
-                              SingleChildScrollView(
-                                child: Column(
-                                  children: [
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    const Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 24.0),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            'Number of cars:',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 24,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                          Spacer(),
-                                          Text(
-                                            '600',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 24,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    const Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 24.0),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          'Features',
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(height: 40),
-                                    const Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 24.0),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          'Brands',
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    const SizedBox(
-                                      height: 40,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(14.0),
-                                      child: Row(
-                                        children: [
-                                          Expanded(
-                                            child: SizedBox(
-                                              height: 56,
-                                              child: OutlinedButton(
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Text('Cancel',
-                                                      style: TextStyle(
-                                                        fontSize: 17,
-                                                      )),
-                                                  style: ButtonStyle()),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 20,
-                                          ),
-                                          Expanded(
-                                            child: SizedBox(
-                                              height: 56,
-                                              child: FilledButton(
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Text('Save',
-                                                      style: TextStyle(
-                                                        fontSize: 17,
-                                                      )),
-                                                  style: ButtonStyle()),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: double.maxFinite,
-                                height: 39.38,
-                                padding: const EdgeInsets.all(17.50),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Opacity(
-                                      opacity: 0.40,
-                                      child: Container(
-                                        width: 35,
-                                        height: 4.38,
-                                        decoration: ShapeDecoration(
-                                          color: const Color(0xFF79747E),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(109.38),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  label: const Text(
-                    'Filter',
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
             Container(
               height: 1,
               width: 300,
@@ -330,8 +219,7 @@ class CarsPage extends StatelessWidget {
                 child: Text(
                   'Most popular',
                   textAlign: TextAlign.left,
-                  style: GoogleFonts.roboto(
-                    color: Colors.black,
+                  style: TextStyle(
                     fontSize: 34,
                     fontWeight: FontWeight.w500,
                   ),
@@ -341,20 +229,21 @@ class CarsPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: CarAd(
-                car_image:
-                    'https://media.discordapp.net/attachments/673875945198714920/1132035875476340816/citroen_cactus.webp?width=781&height=610',
-                car_brand:
-                    'https://media.discordapp.net/attachments/673875945198714920/1132035875207917708/citroen_logo.png?width=661&height=610',
-                car_price: '75',
-                car_name: 'Citroen Cactus',
-                car_type: 'SUV',
-                car_year: '2017',
-                brand_name: 'Citroen',
-              ),
-            ),
+            CarouselSlider.builder(
+                options: CarouselOptions(
+                  autoPlayInterval: const Duration(seconds: 3),
+                  autoPlay: true,
+                  height: 140,
+                  viewportFraction: 1,
+                ),
+                itemCount: 3,
+                itemBuilder:
+                    (BuildContext context, int itemIndex, int pageViewIndex) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: popular[itemIndex],
+                  );
+                }),
             const SizedBox(
               height: 40,
             ),
@@ -365,8 +254,7 @@ class CarsPage extends StatelessWidget {
                 child: Text(
                   'Top matches',
                   textAlign: TextAlign.left,
-                  style: GoogleFonts.roboto(
-                    color: Colors.black,
+                  style: TextStyle(
                     fontSize: 34,
                     fontWeight: FontWeight.w500,
                   ),
@@ -379,7 +267,9 @@ class CarsPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: StreamBuilder<QuerySnapshot?>(
-                stream: collectionRef.snapshots(),
+                stream: CarCubit.get(context).filtering
+                    ? taggedCarsRef.snapshots()
+                    : collectionRef.snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
@@ -429,5 +319,3 @@ class CarsPage extends StatelessWidget {
     );
   }
 }
-
-

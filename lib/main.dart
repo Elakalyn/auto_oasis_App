@@ -27,6 +27,8 @@ Future<void> main() async {
   var onbCache = await CacheHelper.getData(key: 'displayOnBoarding');
   displayOnBoarding = onbCache;
 
+  var darkThemeCache = await CacheHelper.getData(key: 'darkTheme');
+  darkTheme = darkThemeCache;
   // await CacheHelper.removeData(key: 'displayOnBoarding');
   /* Map<String, dynamic> carData = {
     'vehicle_brand': 'KIA',
@@ -66,14 +68,58 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => CarCubit()..loadUserData(),
       child: BlocConsumer<CarCubit, CarState>(
-        listener: (context, state) {
-          // TODO: implement listener
-        },
+        listener: (context, state) {},
         builder: (context, state) {
           return MaterialApp(
             title: 'Auto Oasis',
             theme: ThemeData(
               useMaterial3: true,
+              appBarTheme: const AppBarTheme(
+                elevation: 0,
+                backgroundColor: Colors.white,
+                iconTheme: IconThemeData(
+                  color: Colors.black,
+                ),
+              ),
+              bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+                backgroundColor: Colors.white,
+                unselectedItemColor: Colors.black,
+                selectedItemColor: Colors.orange,
+              ),
+              scaffoldBackgroundColor: Colors.white,
+              textTheme: Theme.of(context).textTheme.apply(
+                    bodyColor: Colors.black,
+                    displayColor: Colors.black,
+                  ),
+            ),
+            themeMode: darkTheme ? ThemeMode.dark : ThemeMode.light,
+            darkTheme: ThemeData(
+              appBarTheme: AppBarTheme(
+                elevation: 0,
+                backgroundColor: Colors.grey[800],
+                iconTheme: const IconThemeData(
+                  color: Colors.white,
+                ),
+              ),
+              bottomNavigationBarTheme: BottomNavigationBarThemeData(
+                backgroundColor: Colors.grey[800],
+                unselectedItemColor: Colors.white,
+                selectedItemColor: Colors.orange,
+              ),
+              primaryColor: Colors.orange,
+              useMaterial3: true,
+              filledButtonTheme: const FilledButtonThemeData(
+                style: ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(
+                  Colors.orange,
+                )),
+              ),
+              scaffoldBackgroundColor: Colors.grey[800],
+              textTheme: Theme.of(context).textTheme.apply(
+                    //  Set default Text() color;  Use:  apply()
+                    bodyColor: Colors.white,
+                    displayColor: Colors.white,
+                  ),
             ),
             home: const MainWidget(),
             debugShowCheckedModeBanner: false,

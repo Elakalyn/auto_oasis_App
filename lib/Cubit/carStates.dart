@@ -29,6 +29,8 @@ class ChangedSettingsState extends CarState {}
 
 class ScrollExpansionState extends CarState {}
 
+class ThemeChangeState extends CarState {}
+
 // OTHERS
 
 class Filtering extends CarState {}

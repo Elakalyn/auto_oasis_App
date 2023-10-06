@@ -1,11 +1,15 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../App/Modules/CarDetails/carDetails.dart';
 import '../../App/Modules/Search/search.dart';
+import '../../App/Modules/Settings/settings.dart';
 import '../../Cubit/carCuibt.dart';
+import '../../Cubit/carStates.dart';
+import '../Styles/styles.dart';
 
 Widget bigText({
   required var text,
@@ -108,7 +112,6 @@ class CarAd extends StatelessWidget {
                       car_name,
                       maxLines: 1,
                       style: const TextStyle(
-                        color: Colors.black,
                         fontSize: 23.34,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -123,7 +126,8 @@ class CarAd extends StatelessWidget {
                     child: Text(
                       '$car_price\$/Day',
                       style: const TextStyle(
-                        color: Color(0xFF188D1D),
+                        color: Color.fromARGB(
+                            255, 53, 201, 61), //Color(0xFF188D1D)
                         fontSize: 13.41,
                       ),
                     ),
@@ -181,7 +185,7 @@ class searchBar extends StatelessWidget {
       child: InkWell(
         onTap: () {
           if (search == false) {
-            navigateTo(context, SearchScreen());
+            navigateTo(context, const SearchScreen());
           }
         },
         child: TextField(
@@ -209,6 +213,79 @@ class searchBar extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class settingWidget extends StatelessWidget {
+  const settingWidget({
+    super.key,
+    required this.name,
+    required this.image,
+  });
+
+  final image;
+  final name;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<CarCubit, CarState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return InkWell(
+          onTap: () {
+            switch (name) {
+              case 'Account':
+                navigateTo(context, const Account());
+                break;
+              case 'Payment':
+                navigateTo(context, const Payment());
+                break;
+              case 'Language':
+                navigateTo(context, const Language());
+                break;
+              case 'Rent History':
+                navigateTo(context, const RentHistory());
+                break;
+              case 'Appearance':
+                navigateTo(context, const Appearance());
+                break;
+            }
+          },
+          child: Container(
+            width: 148,
+            height: 148,
+            decoration: BoxDecoration(
+              color: CarCubit.get(context).settingWidgetColor,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Center(
+                  child: Column(
+                children: [
+                  Expanded(
+                    child: Image.asset(image,
+                        width: 70,
+                        height: 70,
+                        color: CarCubit.get(context).settingIconColor),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    name,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    maxLines: 2,
+                  )
+                ],
+              )),
+            ),
+          ),
+        );
+      },
     );
   }
 }

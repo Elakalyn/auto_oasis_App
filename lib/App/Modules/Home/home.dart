@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-             searchBar(),
+             const searchBar(),
             const SizedBox(
               height: 40,
             ),
@@ -86,7 +86,7 @@ class HomePage extends StatelessWidget {
                 itemCount: 3,
                 itemBuilder:
                     (BuildContext context, int itemIndex, int pageViewIndex) =>
-                        const adWidget())
+                        const adWidget()),
           ],
         ),
       ),
@@ -116,7 +116,7 @@ class adWidget extends StatelessWidget {
           Positioned(
             left: 16,
             top: 16,
-            child: Container(
+            child: SizedBox(
               width: 140,
               height: 8,
               child: Stack(
@@ -162,7 +162,7 @@ class adWidget extends StatelessWidget {
               transform: Matrix4.identity()
                 ..translate(0.0, 0.0)
                 ..rotateZ(3.14),
-              child: Container(
+              child: SizedBox(
                 width: 140,
                 height: 8,
                 child: Stack(

@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, avoid_print
 
 import 'package:auto_oasis/App/Modules/Home/home.dart';
 import 'package:auto_oasis/App/Modules/Settings/settings.dart';
@@ -37,9 +37,9 @@ class CarCubit extends Cubit<CarState> {
   }
 
   List<Widget> Screens = [
-    HomePage(),
-    CarsPage(),
-    SettingsPage(),
+    const HomePage(),
+    const CarsPage(),
+    const SettingsPage(),
   ];
 
   Future<Object?> register(
@@ -72,7 +72,7 @@ class CarCubit extends Cubit<CarState> {
           'phone': phone,
         });
         await CacheHelper.saveData(key: 'uid', value: value.user?.uid);
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           backgroundColor: Colors.green,
           content: Text("Account created successfully!",
               style: TextStyle(color: Colors.white)),
@@ -85,7 +85,7 @@ class CarCubit extends Cubit<CarState> {
     } on FirebaseAuthException catch (e) {
       emit(ErrorRegisterState());
       if (e.code == 'weak-password') {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           backgroundColor: Colors.red,
           content: Text("The password provided is too weak.",
               style: TextStyle(color: Colors.white)),
@@ -93,7 +93,7 @@ class CarCubit extends Cubit<CarState> {
         ));
         print('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           backgroundColor: Colors.red,
           content: Text("The account already exists for that email.",
               style: TextStyle(color: Colors.white)),
@@ -119,7 +119,7 @@ class CarCubit extends Cubit<CarState> {
           .then((value) async {
         print(value.user?.uid);
         await CacheHelper.saveData(key: 'uid', value: value.user?.uid);
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           backgroundColor: Colors.green,
           content:
               Text("Login Success!", style: TextStyle(color: Colors.white)),
@@ -133,7 +133,7 @@ class CarCubit extends Cubit<CarState> {
     } on FirebaseAuthException catch (e) {
       emit(ErrorLoginState());
       if (e.code == 'user-not-found') {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           backgroundColor: Colors.red,
           content:
               Text("User not found.", style: TextStyle(color: Colors.white)),
@@ -142,7 +142,7 @@ class CarCubit extends Cubit<CarState> {
         print('No user found for that email.');
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           backgroundColor: Colors.red,
           content: Text("Wrong password provided for that user.",
               style: TextStyle(color: Colors.white)),
@@ -161,8 +161,10 @@ class CarCubit extends Cubit<CarState> {
   }
 
   var filter;
+  bool filtering = false;
   void selectFilter(v) {
     filter = v;
+    filtering = true;
     emit(Filtering());
   }
 
@@ -197,5 +199,20 @@ class CarCubit extends Cubit<CarState> {
 
       searchResults = results;
     }
+  }
+
+  var settingWidgetColor =
+      darkTheme ? Colors.grey[900] : const Color(0xFFD9D9D9);
+  var settingIconColor = darkTheme ? Colors.white : Colors.black;
+  var chipColor = darkTheme ? Colors.white : Colors.black;
+  Future<void> changeTheme(v) async {
+    await CacheHelper.saveData(key: 'darkTheme', value: v).then((value) {
+      darkTheme = v;
+      settingWidgetColor =
+          darkTheme ? Colors.grey[900] : const Color(0xFFD9D9D9);
+      settingIconColor = darkTheme ? Colors.white : Colors.black;
+      chipColor = darkTheme ? Colors.white : Colors.black;
+      emit(ThemeChangeState());
+    });
   }
 }
