@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import '../../../Cubit/carCuibt.dart';
+import 'package:speed_up_flutter/speed_up_flutter.dart';
+import '../../../Cubit/carCubit.dart';
 import '../../../Network/Local/cacheHelper.dart';
 import '../../../Shared/Constants/constants.dart';
 import '../../../Widget Construction/widget_construction.dart';
@@ -69,14 +70,6 @@ class SettingsPage extends StatelessWidget {
   }
 }
 
-class Account extends StatelessWidget {
-  const Account({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
-  }
-}
 
 class Payment extends StatelessWidget {
   const Payment({super.key});
@@ -145,7 +138,7 @@ class Appearance extends StatelessWidget {
                         Switch(
                             value: darkTheme,
                             onChanged: (v) {
-                              CarCubit.get(context).changeTheme(v); 
+                              CarCubit.get(context).changeTheme(v);
                             })
                       ],
                     ),

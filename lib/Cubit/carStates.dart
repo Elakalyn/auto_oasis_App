@@ -31,6 +31,8 @@ class ScrollExpansionState extends CarState {}
 
 class ThemeChangeState extends CarState {}
 
+class EditProfileState extends CarState {}
+
 // OTHERS
 
 class Filtering extends CarState {}
@@ -46,3 +48,10 @@ class SearchLoadingState extends CarState {}
 class SearchSuccessState extends CarState {}
 
 class SearchErrorState extends CarState {}
+
+// Rent Vehicle
+
+class SelectDate extends CarState {}
+
+class SelectAdditionalService extends CarState {}
+

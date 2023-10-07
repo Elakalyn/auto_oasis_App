@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:speed_up_flutter/speed_up_flutter.dart';
-import '../../../Cubit/carCuibt.dart';
+import '../../../Cubit/carCubit.dart';
 import '../../../Cubit/carStates.dart';
 import '../../../Shared/Components/components.dart';
 

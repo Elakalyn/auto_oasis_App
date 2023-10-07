@@ -1,8 +1,11 @@
-import 'package:auto_oasis/Cubit/carCuibt.dart';
+import 'package:auto_oasis/Cubit/carCubit.dart';
 import 'package:auto_oasis/Cubit/carStates.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:speed_up_flutter/speed_up_flutter.dart';
+
+import '../../../Shared/Components/components.dart';
+import '../Rent/rent.dart';
 
 class CarDetails extends StatelessWidget {
   const CarDetails(
@@ -19,30 +22,6 @@ class CarDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget description = const Text.rich(
-      TextSpan(
-        children: [
-          TextSpan(
-            text:
-                'C4 is an energetic and assertive attitude: A tall, sculpted hood, A front end which incorporates the ',
-            style: TextStyle(
-              fontSize: 13.75,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
-          TextSpan(
-            text: 'Read more',
-            style: TextStyle(
-              color: Color(0xFF3366CC),
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              decoration: TextDecoration.underline,
-            ),
-          ),
-        ],
-      ),
-    );
-
     return BlocConsumer<CarCubit, CarState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -150,75 +129,10 @@ class CarDetails extends StatelessWidget {
                       child: SizedBox(
                         width: 376,
                         child: InkWell(
-                          onTap: () {
-                            if (description ==
-                                const Text.rich(TextSpan(children: [
-                                  TextSpan(
-                                    text:
-                                        'Citroën C4 is an energetic and assertive attitude: A tall, sculpted hood, A front end which incorporates the new aesthetic codes of Citroën: V-shaped light signature, double-stage headlamps and chrome chevrons stretched across the entire width of the vehicle, A staging that highlights Citroën 100% LED Vision technology on the daytime running lights, headlamps and fog lights.',
-                                    style: TextStyle(
-                                      fontSize: 13.75,
-                                      fontWeight: FontWeight.w300,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: 'Read less',
-                                    style: TextStyle(
-                                      color: Color(0xFF3366CC),
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                  )
-                                ]))) {
-                              description = const Text.rich(
-                                TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text:
-                                          'Citroën C4 is an energetic and assertive attitude: A tall, sculpted hood, A front end which incorporates the ',
-                                      style: TextStyle(
-                                        fontSize: 13.75,
-                                        fontWeight: FontWeight.w300,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: 'Read more',
-                                      style: TextStyle(
-                                        color: Color(0xFF3366CC),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600,
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                              CarCubit.get(context).loadDescription();
-                            } else {
-                              description = const Text.rich(TextSpan(children: [
-                                TextSpan(
-                                  text:
-                                      'Citroën C4 is an energetic and assertive attitude: A tall, sculpted hood, A front end which incorporates the new aesthetic codes of Citroën: V-shaped light signature, double-stage headlamps and chrome chevrons stretched across the entire width of the vehicle, A staging that highlights Citroën 100% LED Vision technology on the daytime running lights, headlamps and fog lights.',
-                                  style: TextStyle(
-                                    fontSize: 13.75,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: 'Read less',
-                                  style: TextStyle(
-                                    color: Color(0xFF3366CC),
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                    decoration: TextDecoration.underline,
-                                  ),
-                                )
-                              ]));
-                            }
-                            CarCubit.get(context).loadDescription();
-                          },
-                          child: description,
+                          onTap: () {},
+                          child: const Text(
+                            'C4 is an energetic and assertive attitude: A tall, sculpted hood, A front end which incorporates the...',
+                          ),
                         ),
                       ),
                     ),
@@ -342,7 +256,10 @@ class CarDetails extends StatelessWidget {
                     width: double.maxFinite,
                     height: 50,
                     child: FilledButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          navigateTo(
+                              context, RentVehicle(vehicleName: car_name));
+                        },
                         style: const ButtonStyle(),
                         child: const Text('Rent')),
                   ),

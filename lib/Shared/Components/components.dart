@@ -5,9 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../App/Modules/CarDetails/carDetails.dart';
+import '../../App/Modules/Profile/profile.dart';
+import '../../App/Modules/Rent/rent.dart';
 import '../../App/Modules/Search/search.dart';
 import '../../App/Modules/Settings/settings.dart';
-import '../../Cubit/carCuibt.dart';
+import '../../Cubit/carCubit.dart';
 import '../../Cubit/carStates.dart';
 import '../Styles/styles.dart';
 
@@ -138,7 +140,9 @@ class CarAd extends StatelessWidget {
                   width: 155,
                   height: 37,
                   child: FilledButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        navigateTo(context, RentVehicle(vehicleName: car_name));
+                      },
                       child: const Text('Rent'),
                       style: const ButtonStyle()),
                 ),
@@ -236,7 +240,7 @@ class settingWidget extends StatelessWidget {
           onTap: () {
             switch (name) {
               case 'Account':
-                navigateTo(context, const Account());
+                navigateTo(context, UserProfile());
                 break;
               case 'Payment':
                 navigateTo(context, const Payment());

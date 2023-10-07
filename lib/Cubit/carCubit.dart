@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import, avoid_print
 
 import 'package:auto_oasis/App/Modules/Home/home.dart';
+import 'package:auto_oasis/App/Modules/Main/mainModule.dart';
 import 'package:auto_oasis/App/Modules/Settings/settings.dart';
 import 'package:auto_oasis/App/Modules/Vehicles/vehicles.dart';
 import 'package:auto_oasis/Network/Local/cacheHelper.dart';
@@ -10,6 +11,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../Shared/Components/components.dart';
 import '../Shared/Constants/constants.dart';
 import 'carStates.dart';
 
@@ -78,6 +80,7 @@ class CarCubit extends Cubit<CarState> {
               style: TextStyle(color: Colors.white)),
           duration: Duration(seconds: 3),
         ));
+        navigateToAndFinish(context, MainWidget());
         emit(SuccessRegisterState());
         return value;
       });
@@ -158,6 +161,7 @@ class CarCubit extends Cubit<CarState> {
         await FirebaseFirestore.instance.collection('users').doc(uid).get();
 
     interuser = documentSnapshot;
+    print(interuser);
   }
 
   var filter;
@@ -214,5 +218,61 @@ class CarCubit extends Cubit<CarState> {
       chipColor = darkTheme ? Colors.white : Colors.black;
       emit(ThemeChangeState());
     });
+  }
+
+  void emitEditProfile() {
+    emit(EditProfileState());
+  }
+
+  void editProfile({newPhone, newEmail}) {
+    print(newPhone);
+    print(newEmail);
+  }
+
+  var fromDate;
+  var toDate;
+  String pickupLocation = '';
+  String dropoffLocation = '';
+  List<String> selectedServices = [];
+
+  Future<void> selectDate(BuildContext context, bool isFromDate) async {
+    final DateTime? selectedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime.now().add(const Duration(days: 365)),
+    );
+
+    if (selectedDate != null) {
+      if (isFromDate) {
+        fromDate = selectedDate;
+      } else {
+        toDate = selectedDate;
+      }
+    }
+    emit(SelectDate());
+  }
+
+  void addService() {
+    emit(SelectAdditionalService());
+  }
+
+  final CollectionReference bookingsCollection =
+      FirebaseFirestore.instance.collection('bookings');
+  Future<void> uploadBookingData(vehicleName) async {
+    try {
+      await bookingsCollection.add({
+        'userID': uid,
+        'fromDate': fromDate,
+        'toDate': toDate,
+        'pickupLocation': pickupLocation,
+        'dropoffLocation': dropoffLocation,
+        'selectedServices': selectedServices,
+        'vehicleName': vehicleName,
+      });
+      print('Booking data uploaded successfully!');
+    } catch (e) {
+      print('Error uploading booking data: $e');
+    }
   }
 }

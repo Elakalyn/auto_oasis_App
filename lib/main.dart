@@ -9,7 +9,8 @@ import 'App/Modules/Login/login.dart';
 import 'App/Modules/Onboarding/onboarding.dart';
 
 import 'App/Modules/Profile/profile.dart';
-import 'Cubit/carCuibt.dart';
+import 'App/Modules/Rent/rent.dart';
+import 'Cubit/carCubit.dart';
 import 'Cubit/carStates.dart';
 import 'Network/Local/cacheHelper.dart';
 import 'Shared/Constants/constants.dart';
@@ -29,7 +30,6 @@ Future<void> main() async {
 
   var darkThemeCache = await CacheHelper.getData(key: 'darkTheme');
   darkTheme = darkThemeCache;
-  // await CacheHelper.removeData(key: 'displayOnBoarding');
   /* Map<String, dynamic> carData = {
     'vehicle_brand': 'KIA',
     'vehicle_image':
@@ -65,6 +65,7 @@ class MyApp extends StatelessWidget {
     } else {
       home = const Login();
     }
+
     return BlocProvider(
       create: (context) => CarCubit()..loadUserData(),
       child: BlocConsumer<CarCubit, CarState>(
@@ -121,7 +122,7 @@ class MyApp extends StatelessWidget {
                     displayColor: Colors.white,
                   ),
             ),
-            home: const MainWidget(),
+            home: home,
             debugShowCheckedModeBanner: false,
           );
         },
