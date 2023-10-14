@@ -40,13 +40,6 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-##### Project completion: *31% Complete*
-
-- Design objects: *42.86% Complete*
-- Functions: *21% Complete*
-
-In summary, 42% of the design prototype has been programmed into the app and 21% of planned functionalities have been added into the code.
-
 ### Prerequisites
 
 - [Flutter SDK](https://flutter.dev)
