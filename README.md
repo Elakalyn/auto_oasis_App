@@ -3,7 +3,8 @@
 
 <p align="center">
   <a href="https://github.com/Elakalyn/auto_oasis_App">
-    <img src="https://media.discordapp.net/attachments/673875945198714920/1134158087293521973/onboarding_car.png" alt="Logo">
+    <img width="400" height="250" alt="logo" src="https://github.com/user-attachments/assets/fa779617-26e6-47c7-8f20-e575c537e450" />
+
   </a>
 
   <h1 align="center">Auto Oasis - Car Rental App</h1>
@@ -18,12 +19,10 @@
 ## 📱 Screenshots (Android):
 
 <div style="display: flex; justify-content: center;">
-  <img src="https://media.discordapp.net/attachments/673875945198714920/1132021543497629796/image.png?width=281&height=609" alt="Image 1">
-  <img src="https://media.discordapp.net/attachments/673875945198714920/1132021622979690636/image.png?width=279&height=610" alt="Image 2">
-  <img src="https://media.discordapp.net/attachments/673875945198714920/1132021658388013128/image.png?width=273&height=609" alt="Image 3">
-  <img src="https://media.discordapp.net/attachments/673875945198714920/1132021840118829196/image.png?width=281&height=609" alt="Image 4">
-  <img src="https://media.discordapp.net/attachments/673875945198714920/1132021974487552112/image.png?width=254&height=610" alt="Image 5">
-  <img src="https://media.discordapp.net/attachments/673875945198714920/1132022141739602030/image.png?width=281&height=609" alt="Image 6">
+<img width="280" height="700" alt="image" src="https://github.com/user-attachments/assets/54c58dd3-4a8c-42b1-b6ab-b75e1209479e" />
+<img width="280" height="700" alt="image" src="https://github.com/user-attachments/assets/4024c1ac-2f74-4f76-af6d-ed1a8d7f80f8" />
+<img width="280" height="700" alt="image" src="https://github.com/user-attachments/assets/1c6cc241-7b40-44bc-ab8b-f808c96be4cf" />
+
 </div>
 
 *Changes to UI are applied in the new_layout branch*
